@@ -61,4 +61,5 @@ FIX   <建议动作，或最小复现>
 | 执行器 | 作用 |
 |---|---|
 | `tools/agents-probe.mjs` | 探测有无子代理 → `MODE delegate\|self-compress` |
-| `tools/exec/session-stats.mjs` | 读会话 `.jsonl`，算转数 / 输入输出 token / 缓存命中 / 历史重发占比 / 工具分布 |
+| `tools/exec/session-stats.mjs` | 读会话 `.jsonl`，算转数 / 输入输出 token / 缓存命中 / 历史重发占比 / 工具分布（**症状**） |
+| `tools/exec/session-audit.mjs` | 同上一份数据，但算的是「其中多少是可省的、省在哪」（**处方**）；改完之后复量它 |

@@ -73,8 +73,9 @@ node <skill>/scripts/cli.js journal .workbuddy/memory api-retry resolve 9 --keep
 # 4) 探索前：先探测框架有没有子代理
 node <skill>/tools/agents-probe.mjs          # → MODE delegate | self-compress
 
-# 5) 想知道 token 花在哪
-node <skill>/tools/exec/session-stats.mjs <session.jsonl>
+# 5) 想知道 token 花在哪、以及能省多少
+node <skill>/tools/exec/session-stats.mjs <session.jsonl>   # 症状：花了多少
+node <skill>/tools/exec/session-audit.mjs <session.jsonl>   # 处方：可省上界与三项归因
 ```
 
 ---
@@ -129,7 +130,7 @@ skill/                 ← 装到宿主的就是这个目录
   scripts/             执行层：cli / journal / brief / taskdoc / protocol
   tools/
     agents-probe.mjs   能力门
-    exec/              执行器库（session-stats 是示范）
+    exec/              执行器库（session-stats 报症状；session-audit 报可省份额）
 tests/                 52 条测试（node:test，无框架依赖）
 dev/install-skill.mjs  安装与核对
 docs/                  DESIGN / cost-model / install

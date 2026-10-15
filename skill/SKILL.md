@@ -71,14 +71,18 @@ node <skill-dir>/tools/agents-probe.mjs    # 第一行 OK agents=yes|no，最后
 
 细节见 `references/capability-gate.md`。
 
-### 五、想知道 token 花在哪
+### 五、想知道 token 花在哪、以及能省多少
 
 ```bash
-node <skill-dir>/tools/exec/session-stats.mjs <session.jsonl>
+node <skill-dir>/tools/exec/session-stats.mjs <session.jsonl>   # 症状：花了多少
+node <skill-dir>/tools/exec/session-audit.mjs <session.jsonl>   # 处方：其中多少可省、省在哪
 ```
 
-给出转数 / 输入输出 token / 缓存命中 / **历史重发占比** / 工具分布，成功只回 ~10 行，
-明细写进 `DETAIL` 指向的文件。**改了什么之后，用它复量，而不是凭感觉。**
+`session-stats` 给出转数 / 输入输出 token / 缓存命中 / **历史重发占比** / 工具分布。
+`session-audit` 再往前一步，把「可省上界」拆成三项并各给一个百分比：
+**重复读 / 大读截断（该带 limit 的没带）/ 多行内联脚本（该写成执行器的）** ——
+这三项正好对应本 skill 的三条纪律，所以它就是**改动前后要对比的那个数**。
+两者都只回 ~10 行，明细写进 `DETAIL` 指向的文件。**改了什么之后，用它复量，而不是凭感觉。**
 
 ## 纪律（要点）
 
@@ -107,7 +111,8 @@ node <skill-dir>/tools/exec/session-stats.mjs <session.jsonl>
 | `cli.js journal <dir> <taskId> next <文本>` | 设置「下一步」（覆盖） |
 | `cli.js journal <dir> <taskId> show` | 打印该任务的 journal 正文 |
 | `tools/agents-probe.mjs` | 探测有无子代理 → `MODE` |
-| `tools/exec/session-stats.mjs <jsonl>` | 会话 token / 转数 / 缓存 / 工具分布 |
+| `tools/exec/session-stats.mjs <jsonl>` | 会话 token / 转数 / 缓存 / 工具分布（症状） |
+| `tools/exec/session-audit.mjs <jsonl>` | 可省上界与三项归因（处方，改动前后对比用它） |
 
 ## 资源
 
