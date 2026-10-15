@@ -1,0 +1,13 @@
+# 依赖 / 构建产物（本仓零依赖，留着以防将来引入）
+node_modules/
+dist/
+*.tgz
+
+# 本机运行时状态，绝不入库
+.workbuddy/
+.dsh/
+*.log
+
+# 临时验证目录
+.tmp/
+.verify-tmp/

@@ -1,0 +1,13 @@
+# 钉死行尾：脚本在 Linux/WSL 下带 CRLF 会 bad interpreter。
+* text=auto eol=lf
+
+*.js   text eol=lf
+*.mjs  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+*.yml  text eol=lf
+
+# 二进制
+*.png  binary
+*.jpg  binary
+*.ico  binary
